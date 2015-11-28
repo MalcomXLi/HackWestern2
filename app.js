@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/sms', twilio.webhook(), function(request, response) {
-	console.log(request.body.Body);
+	console.log("Text is : " + request.body.Body);
 	response.set({
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
@@ -52,20 +52,34 @@ var server = app.listen(process.env.PORT || 3000, function () {
 });
 
 
-// app.get('/wolfram', function(request, response){
-//     response.set({
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Origin": "*"
-//     });
+app.get('/wolfram', function(request, response){
+    response.set({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    });
 
-//     var query = "integrate 2x";
+    var query = "integrate 2x";
 
-//     wolfram.queryWolfram(query, function(err, result){
-//         if (err){
-//             response.status(404).send(err);
-//         }
-//         else{
-//             response.status(200).send(result);      
-//         }
-//     });
-// });
+    wolfram.queryWolfram(query, function(err, result){
+        if (err){
+            response.status(404).send(err);
+        }
+        else{
+        	console.log(result.queryresult);
+            for(var a=0; a<result.queryresult.pod.length; a++)
+	        {
+	            var pod = result.queryresult.pod[a];
+	            console.log(pod.$.title,": ");
+	            for(var b=0; b<pod.subpod.length; b++)
+	            {
+	                var subpod = pod.subpod[b];
+	                for(var c=0; c<subpod.plaintext.length; c++)
+	                {
+	                    var text = subpod.plaintext[c];
+	                    console.log('\t', text);
+	                }
+	            }
+	        }      
+        }
+    });
+});
