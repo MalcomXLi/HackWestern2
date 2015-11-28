@@ -1,0 +1,19 @@
+{
+  "name": "HackWestern2",
+  "version": "1.0.0",
+  "description": "Make a application for offline math help",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MalcomXLi/HackWestern2.git"
+  },
+  "author": "Malcom Li Maidi Lin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MalcomXLi/HackWestern2/issues"
+  },
+  "homepage": "https://github.com/MalcomXLi/HackWestern2"
+}
