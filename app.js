@@ -33,10 +33,12 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
-
-        	console.log("Results : " + JSON.stringify(result[0]));
+        	result.forEach(function(res){
+        		console.log("Results : " + JSON.stringify(res));
+        	});
+        
             var twiml = new twilio.TwimlResponse();
-		    twiml.message('What is UP my NIGGA');
+		    twiml.message(response[0].text);
 		    response.send(twiml);     
         }
     });
@@ -54,7 +56,7 @@ var server = app.listen(process.env.PORT || 3000, function () {
 
 
 app.get('/wolfram', function(request, response){
-	console.log(request.body);
+	console.log(request);
     response.set({
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
