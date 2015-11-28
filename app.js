@@ -30,14 +30,19 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.listen(process.env.PORT || 3000);
-
 app.post('/sms', twilio.webhook(), function(request, response) {
 
 	console.log(request);
     var twiml = new twilio.TwimlResponse();
     twiml.message('What is UP my NIGGA');
     response.send(twiml);
+});
+
+var server = app.listen(app.get("port"), function () {
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('Example app listening at http://%s:%s', host, port);
 });
 
 
