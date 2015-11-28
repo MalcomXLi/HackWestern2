@@ -27,15 +27,15 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 
     wolfram.queryWolfram(query, function(err, result){
         if (err){
-            response.send(err);
+            response.status(404).send(err);
         }
         else{
-            response.send(result);      
+            response.status(200).send(result);      
         }
     });
-    var twiml = new twilio.TwimlResponse();
-    twiml.message('What is UP my NIGGA');
-    response.send(twiml);
+    // var twiml = new twilio.TwimlResponse();
+    // twiml.message('What is UP my NIGGA');
+    // response.send(twiml);
 });
 
 //app.listen(process.env.PORT || 3000);
