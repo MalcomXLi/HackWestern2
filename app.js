@@ -37,22 +37,24 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	var text;
         	var image;
         	result.forEach(function(res){
-        		console.log("Results : " + JSON.stringify(res));
-        		
-        		if (res['title']){
-        			console.log("Title: " + res['title']);
-        			 title = res['title'];
+        		if (res['primary']){
+	        		console.log("Results : " + JSON.stringify(res));
+					console.log("Title: " + res['title']);
+				 	title = res['title'];
+	        		res['subpods'].forEach(function(pods){
+	        			console.log("text: " + pods['text']);
+	        			
+	        			console.log("image : " + pods['image']);
+	        			text = pods['text'];
+						image = pods['image'];
+	        		});
         		}
-        		res['subpods'].forEach(function(pods){
-        			console.log("text: " + pods['text']);
-        			
-        			console.log("image : " + pods['image']);
-        			text = pods['text'];
-					image = pods['image'];
-        		});
         	});
         
-		    twiml.message("results : \n Title:" + title);
+		    twiml.message("Query Results : \nTitle:" 
+		    	+ title +
+		    	"\nAnswer: " + text +
+		    	"\nImage: " + image);
 		    response.send(twiml);     
         }
     });
