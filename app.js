@@ -2,7 +2,7 @@ var express = require("express");
 var app = express ();
 var bodyParser = require("body-parser");
 var twilio = require("twilio");
-
+	
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -17,7 +17,8 @@ var server = app.listen(app.get("port"), function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 
-app.post('/', twilio.webhook(), function(request, response) {
+app.post('/sms', twilio.webhook(), function(request, response) {
+	console.log("FUCK");
     var twiml = new twilio.TwimlResponse();
     twiml.message('This HTTP request came from Twilio!');
     response.send(twiml);
