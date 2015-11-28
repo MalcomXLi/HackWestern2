@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/MalcomXLi/HackWestern2/issues"
   },
-  "homepage": "https://github.com/MalcomXLi/HackWestern2"
+  "homepage": "https://github.com/MalcomXLi/HackWestern2",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "twilio": "^2.5.2"
+  }
 }
