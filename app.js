@@ -17,11 +17,21 @@ var server = app.listen(app.get("port"), function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 
-app.post('/fallback', twilio.webhook({
-    validate:false
+app.post('/sms', twilio.webhook({
+    host:'hackwestern.herokuapp.com',
+    protocol:'http'
 }), function(request, response) {
     var twiml = new twilio.TwimlResponse();
-    twiml.message('Sorry - there was an error processing your message.');
+    twiml.message('What is UP my NIGGA');
     response.send(twiml);
+});
+
+app.post('/call', function(request, response) {
+    //Create TwiML response
+    var twiml = new twilio.TwimlResponse();
+    twiml.say('Hi you fucker!');
+
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
 });
 
