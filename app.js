@@ -18,10 +18,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/sms', twilio.webhook(), function(request, response) {
-	response.set({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-    });
 
     var query = "integrate 2x";
 
