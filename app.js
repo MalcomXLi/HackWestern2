@@ -18,6 +18,21 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/sms', twilio.webhook(), function(request, response) {
+	response.set({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    });
+
+    var query = "integrate 2x";
+
+    wolfram.queryWolfram(query, function(err, result){
+        if (err){
+            response.status(404).send(err);
+        }
+        else{
+            response.status(200).send(result);      
+        }
+    });
     var twiml = new twilio.TwimlResponse();
     twiml.message('What is UP my NIGGA');
     response.send(twiml);
@@ -33,20 +48,20 @@ var server = app.listen(process.env.PORT || 3000, function () {
 });
 
 
-app.get('/wolfram', function(request, response){
-    response.set({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-    });
+// app.get('/wolfram', function(request, response){
+//     response.set({
+//         "Content-Type": "application/json",
+//         "Access-Control-Allow-Origin": "*"
+//     });
 
-    var query = "integrate 2x";
+//     var query = "integrate 2x";
 
-    wolfram.queryWolfram(query, function(err, result){
-        if (err){
-            response.status(404).send(err);
-        }
-        else{
-            response.status(200).send(result);      
-        }
-    });
-});
+//     wolfram.queryWolfram(query, function(err, result){
+//         if (err){
+//             response.status(404).send(err);
+//         }
+//         else{
+//             response.status(200).send(result);      
+//         }
+//     });
+// });
