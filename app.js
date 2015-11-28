@@ -18,7 +18,7 @@ var server = app.listen(app.get("port"), function () {
 });
 
 app.post('/sms', twilio.webhook({
-    validate:false
+    url:'http://hackwestern.herokuapp.com/sms'
 }), function(request, response) {
 	console.log(request);
     var twiml = new twilio.TwimlResponse();
@@ -26,14 +26,6 @@ app.post('/sms', twilio.webhook({
     response.send(twiml);
 });
 
-app.post('/call', function(request, response) {
-    //Create TwiML response
-    var twiml = new twilio.TwimlResponse();
-    twiml.say('Hi you fucker!');
-
-    res.writeHead(200, {'Content-Type': 'text/xml'});
-    res.end(twiml.toString());
-});
 
 app.get('/wolfram', function(request, response){
     response.set({
