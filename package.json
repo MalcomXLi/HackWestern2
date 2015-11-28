@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "twilio": "^2.5.2"
+    "twilio": "^2.5.2",
+    "wolfram-alpha": "^0.3.0"
   }
 }
