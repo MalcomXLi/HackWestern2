@@ -2,7 +2,7 @@ var express = require("express");
 var app = express ();
 var bodyParser = require("body-parser");
 var twilio = require("twilio");
-	
+var wolfram = require('./wolfram.js');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -35,3 +35,20 @@ app.post('/call', function(request, response) {
     res.end(twiml.toString());
 });
 
+app.get('/wolfram', function(request, response){
+    response.set({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    });
+
+    var query = "integrate 2x";
+
+    wolfram.queryWolfram(query, function(err, result){
+        if (err){
+            response.status(404).send(err);
+        }
+        else{
+            response.status(200).send(result);      
+        }
+    });
+});
