@@ -33,10 +33,14 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
+        	var title;
         	result.forEach(function(res){
         		console.log("Results : " + JSON.stringify(res));
-        		console.log("Title: " + res['title']);
-        		if (res['title']) var title = res['title'];
+        		
+        		if (res['title']){
+        			console.log("Title: " + res['title']);
+        			 title = res['title'];
+        		}
         		res['subpods'].forEach(function(pods){
         			console.log("text: " + pods['texts']);
         			console.log("image : " + pods['image']);
