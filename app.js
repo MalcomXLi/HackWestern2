@@ -33,7 +33,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
-        	console.log(result);
+        	console.log("Results : " + result);
             var twiml = new twilio.TwimlResponse();
 		    twiml.message('What is UP my NIGGA');
 		    response.send(twiml);     
@@ -65,21 +65,7 @@ app.get('/wolfram', function(request, response){
             response.status(404).send(err);
         }
         else{
-        	console.log(result.queryresult);
-            for(var a=0; a<result.queryresult.pod.length; a++)
-	        {
-	            var pod = result.queryresult.pod[a];
-	            console.log(pod.$.title,": ");
-	            for(var b=0; b<pod.subpod.length; b++)
-	            {
-	                var subpod = pod.subpod[b];
-	                for(var c=0; c<subpod.plaintext.length; c++)
-	                {
-	                    var text = subpod.plaintext[c];
-	                    console.log('\t', text);
-	                }
-	            }
-	        }      
+            response.status(200).send(result);      
         }
     });
 });
