@@ -35,9 +35,10 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         else{
         	result.forEach(function(res){
         		console.log("Results : " + JSON.stringify(res));
+        		console.log("Is Primary: " + res.primary);
         	});
         
-		    twiml.message("results :" + response[0]);
+		    twiml.message("results :");
 		    response.send(twiml.toString());     
         }
     });
