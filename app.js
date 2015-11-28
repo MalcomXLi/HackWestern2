@@ -38,7 +38,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	});
         
             var twiml = new twilio.TwimlResponse();
-		    twiml.message(response[0].text);
+		    twiml.message(JSON.stringify(response[0]);
 		    response.send(twiml);     
         }
     });
