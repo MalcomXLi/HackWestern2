@@ -33,7 +33,8 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
-        	console.log("Results : " + result);
+
+        	console.log("Results : " + result[0]);
             var twiml = new twilio.TwimlResponse();
 		    twiml.message('What is UP my NIGGA');
 		    response.send(twiml);     
