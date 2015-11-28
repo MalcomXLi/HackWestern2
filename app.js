@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/sms', twilio.webhook(), function(request, response) {
+	console.log(request);
 	response.set({
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
@@ -32,6 +33,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
+        	console.log(result);
             var twiml = new twilio.TwimlResponse();
 		    twiml.message('What is UP my NIGGA');
 		    response.send(twiml);     
