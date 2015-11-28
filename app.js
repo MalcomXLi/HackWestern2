@@ -9,19 +9,6 @@ app.set('port', (process.env.PORT || 3000));
 // Create an express web app
 var app = express();
 
-// app.post('/sms',twilio.webhook(), function(request, response) {
-//     // Create a TwiML response
-//     var twiml = new twilio.TwimlResponse();
-//     twiml.message('HOLY SHITTT WTF!');
-    
-//     response.send(twiml);
-// });
-
-// app.listen(process.env.PORT || 3000);
-
-
-
-
 
 //Serving files, such as images, CSS, JavaScript and other static files 
 app.use('/', express.static(__dirname+ '/public'));
@@ -38,14 +25,14 @@ app.post('/sms', twilio.webhook(), function(request, response) {
     response.send(twiml);
 });
 
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
 
-// app.listen(process.env.PORT || 3000, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
+app.listen(process.env.PORT || 3000, function () {
+    var host = server.address().address;
+    var port = server.address().port;
 
-//     console.log('Example app listening at http://%s:%s', host, port);
-// });
+    console.log('Example app listening at http://%s:%s', host, port);
+});
 
 
 // app.get('/wolfram', function(request, response){
