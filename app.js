@@ -9,61 +9,41 @@ app.set('port', (process.env.PORT || 3000));
 // Create an express web app
 var app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-
-
-app.post('/sms',twilio.webhook(), function(request, response) {
-    // Create a TwiML response
-    var twiml = new twilio.TwimlResponse();
-    twiml.message('HOLY SHITTT WTF!');
+// app.post('/sms',twilio.webhook(), function(request, response) {
+//     // Create a TwiML response
+//     var twiml = new twilio.TwimlResponse();
+//     twiml.message('HOLY SHITTT WTF!');
     
-    response.send(twiml);
-});
+//     response.send(twiml);
+// });
 
-app.listen(process.env.PORT || 3000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// app.listen(process.env.PORT || 3000);
 
 
 
 
 
 //Serving files, such as images, CSS, JavaScript and other static files 
-// app.use('/', express.static(__dirname+ '/public'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-// 	extended: true
-// }));
+app.use('/', express.static(__dirname+ '/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
-// var server = app.listen(app.get("port"), function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
+var server = app.listen(app.get("port"), function () {
+    var host = server.address().address;
+    var port = server.address().port;
 
-//     console.log('Example app listening at http://%s:%s', host, port);
-// });
+    console.log('Example app listening at http://%s:%s', host, port);
+});
 
-// app.post('/sms', twilio.webhook(), function(request, response) {
+app.post('/sms', twilio.webhook(), function(request, response) {
 
-// 	console.log(request);
-//     var twiml = new twilio.TwimlResponse();
-//     twiml.message('What is UP my NIGGA');
-//     response.send(twiml);
-// });
+	console.log(request);
+    var twiml = new twilio.TwimlResponse();
+    twiml.message('What is UP my NIGGA');
+    response.send(twiml);
+});
 
 
 // app.get('/wolfram', function(request, response){
