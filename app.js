@@ -18,7 +18,8 @@ var server = app.listen(app.get("port"), function () {
 });
 
 app.post('/sms', twilio.webhook({
-    validate:false
+    host:'hackwestern.herokuapp.com',
+    protocol:'https'
 }), function(request, response) {
     var twiml = new twilio.TwimlResponse();
     twiml.message('What is UP my NIGGA');
