@@ -17,9 +17,7 @@ var server = app.listen(app.get("port"), function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 
-app.post('/sms', twilio.webhook({
-    url:'http://hackwestern.herokuapp.com/sms'
-}), function(request, response) {
+app.post('/sms', twilio.webhook(), function(request, response) {
 	console.log(request);
     var twiml = new twilio.TwimlResponse();
     twiml.message('What is UP my NIGGA');
