@@ -17,10 +17,11 @@ var server = app.listen(app.get("port"), function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 
-app.post('/sms', twilio.webhook(), function(request, response) {
-	console.log("FUCK");
+app.post('/fallback', twilio.webhook({
+    validate:false
+}), function(request, response) {
     var twiml = new twilio.TwimlResponse();
-    twiml.message('This HTTP request came from Twilio!');
+    twiml.message('Sorry - there was an error processing your message.');
     response.send(twiml);
 });
 
