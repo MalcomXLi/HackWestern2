@@ -20,7 +20,7 @@ app.post('/sms',twilio.webhook(), function(request, response) {
     var twiml = new twilio.TwimlResponse();
     twiml.message('HOLY SHITTT WTF!');
     
-    response.send(twiml;
+    response.send(twiml);
 });
 
 app.listen(process.env.PORT || 3000);
