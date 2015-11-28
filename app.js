@@ -26,9 +26,9 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 
     //var query = "integrate 2x";
     var query = request.body.Body;
+    var twiml = new twilio.TwimlResponse();
     wolfram.queryWolfram(query, function(err, result){
         if (err){
-            var twiml = new twilio.TwimlResponse();
 		    twiml.message('eat dick');
 		    response.send(twiml);    
         }
@@ -37,9 +37,8 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         		console.log("Results : " + JSON.stringify(res));
         	});
         
-            var twiml = new twilio.TwimlResponse();
-		    twiml.message(JSON.stringify(response[0]));
-		    response.send(twiml);     
+		    twiml.message("results :" + response[0]);
+		    response.send(twiml.toString());     
         }
     });
 
@@ -61,13 +60,8 @@ app.get('/wolfram', function(request, response){
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     });
-    if (!request.body){
     	var query = "integrate 2x";
-	}
-	else {
-		console.log(request.body);
-		var query = request.body;
-	}
+
 
     wolfram.queryWolfram(query, function(err, result){
         if (err){
