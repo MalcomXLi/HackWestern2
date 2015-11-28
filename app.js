@@ -38,7 +38,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
     response.send(twiml);
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(app.get('port'));
 
 // app.listen(process.env.PORT || 3000, function () {
 //     var host = server.address().address;
