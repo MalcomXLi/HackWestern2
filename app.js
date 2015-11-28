@@ -38,12 +38,13 @@ app.post('/sms', twilio.webhook(), function(request, response) {
     response.send(twiml);
 });
 
-app.listen(app.get("port"), function () {
-    var host = server.address().address;
-    var port = server.address().port;
+ app.listen(app.get("port"));
+// app.listen(app.get("port"), function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
 
-    console.log('Example app listening at http://%s:%s', host, port);
-});
+//     console.log('Example app listening at http://%s:%s', host, port);
+// });
 
 
 // app.get('/wolfram', function(request, response){
