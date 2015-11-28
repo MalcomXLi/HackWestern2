@@ -34,7 +34,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         }
         else{
 
-        	console.log("Results : " + JSON.parse(result[0]);
+        	console.log("Results : " + JSON.parse(result[0]));
             var twiml = new twilio.TwimlResponse();
 		    twiml.message('What is UP my NIGGA');
 		    response.send(twiml);     
@@ -58,8 +58,13 @@ app.get('/wolfram', function(request, response){
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     });
-
+    if (!request.body){
     var query = "integrate 2x";
+	}
+	else {
+		console.log(request.body);
+		var query = request.body;
+	}
 
     wolfram.queryWolfram(query, function(err, result){
         if (err){
