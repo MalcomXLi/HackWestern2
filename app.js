@@ -18,14 +18,14 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/sms', twilio.webhook(), function(request, response) {
-	console.log(request);
+	console.log(request.body.Body);
 	response.set({
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     });
 
-    var query = "integrate 2x";
-
+    //var query = "integrate 2x";
+    var query = request.body.Body;
     wolfram.queryWolfram(query, function(err, result){
         if (err){
             var twiml = new twilio.TwimlResponse();
