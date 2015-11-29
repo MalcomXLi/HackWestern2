@@ -37,7 +37,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	var text;
         	var image;
         	console.log(result);
-        	result.forEach(function(res){
+        	result.forEach(function(JSON.stringify(res)){
         		if (res['primary']){
 	        		console.log("Results : " + JSON.stringify(res));
 					console.log("Title: " + res['title']);
@@ -78,7 +78,7 @@ app.get('/wolfram', function(request, response){
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     });
-    	var query = "integrate 2x";
+    	var query = "4*9";
 
 
     wolfram.queryWolfram(query, function(err, result){
