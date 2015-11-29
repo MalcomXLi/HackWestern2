@@ -51,7 +51,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 					  });
         		}
         		var resultstring = "";
-				if (res[title]){
+				if (res['title']){
 					resultString += resultString + res['title'];
 				}
         		resultstring += stringFormat(res);
