@@ -38,24 +38,22 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	var image;
         	console.log(JSON.stringify(result));
         	result.forEach(function(res){
-        		if (res['primary']){
 	        		console.log("Results : " + JSON.stringify(res));
 					console.log("Title: " + res['title']);
-				 	title = res['title'];
 	        		res['subpods'].forEach(function(pods){
 	        			console.log("text: " + pods['text']);
-	        			
-	        			console.log("image : " + pods['image']);
-	        			text = pods['text'];
-						image = JSON.stringify(pods);
+	        			if (res['primary']){
+						 	title = res['title'];
+							text = pods['text'];
+	        			}
 	        		});
-        		}
         	});
         
 		    twiml.message("Query Results : \nTitle:" 
 		    	+ title +
 		    	"\nAnswer: " + text +
-		    	"\nImage: " + image);
+		    	"\nImage: " 
+		    	);
 		    response.send(twiml);     
         }
     });
@@ -78,7 +76,7 @@ app.get('/wolfram', function(request, response){
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     });
-    	var query = "4*9";
+    	var query = "plot(log(x))";
 
 
     wolfram.queryWolfram(query, function(err, result){
