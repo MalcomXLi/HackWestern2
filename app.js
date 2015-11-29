@@ -26,7 +26,6 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         "Access-Control-Allow-Origin": "*"
     });
 
-    //var query = "integrate 2x";
     var query = request.body.Body;
     var twiml = new twilio.TwimlResponse();
     wolfram.queryWolfram(query, function(err, result){
@@ -52,10 +51,13 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 					  });
         		}
         		var resultstring = res['title'] +
-		    	"\nAnswer: " + res['text'] +
-		    	"\nImage: " + res['image'];
-        		twiml.message(resultstring
-		    	);
+		    	"\nAnswer: " + res['text'] ;
+		    	var media = res['image'];
+        		twiml.message(function() {
+			        this.body(resultstring);
+			        this.media(media);
+			    });
+
 		    response.send(twiml);  
         	})   
         }
