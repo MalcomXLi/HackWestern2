@@ -54,13 +54,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         			console.log('nonmedia : '+resultString);
         			twiml.message(resultString);
         		}
-        		if (twiml.message !== ""){
-        			twiml.message = "Query was not found...\nPlease try another one";
-	        		console.log('Nothing found');
-	        	}
-	        	else {
-	        		console.log('Sending now!');
-	        	}
+        		console.log('Sending now!');
 	        	response.send(twiml);  
         	})   
         }
