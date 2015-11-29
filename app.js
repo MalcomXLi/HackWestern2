@@ -36,12 +36,11 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	var title;
         	var text;
         	var image;
-        	console.log(JSON.stringify(result));
         	result.forEach(function(res){
 	        		console.log("Results : " + JSON.stringify(res));
-					console.log("Title: " + res['title']);
+					//console.log("Title: " + res['title']);
 	        		res['subpods'].forEach(function(pods){
-	        			console.log("text: " + pods['text']);
+	        			//console.log("text: " + pods['text']);
 	        			if (res['primary']){
 						 	title = res['title'];
 							text = pods['text'];
@@ -49,8 +48,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 	        		});
         	});
         
-		    twiml.message("Query Results : \nTitle:" 
-		    	+ title +
+		    twiml.message(title +
 		    	"\nAnswer: " + text +
 		    	"\nImage: " 
 		    	);
