@@ -1,5 +1,0 @@
-oVwIJWnUjs9ju4ICYREZRNctNzrNEuAy
-secret:oVwIJWnUjs9ju4ICYREZRNctNzrNEuAy
-
-env variable:
-windows: set PATH_NAME=$path
