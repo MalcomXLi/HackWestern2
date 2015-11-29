@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/sms', twilio.webhook(), function(request, response) {
-	console.log("Text is : " + request.body.Body);
+	console.log("Query is : " + request.body.Body);
 	response.set({
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
@@ -36,6 +36,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	var title;
         	var text;
         	var image;
+        	console.log(result);
         	result.forEach(function(res){
         		if (res['primary']){
 	        		console.log("Results : " + JSON.stringify(res));
@@ -46,7 +47,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 	        			
 	        			console.log("image : " + pods['image']);
 	        			text = pods['text'];
-						image = pods['image'];
+						image = JSON.stringify(pods);
 	        		});
         		}
         	});
