@@ -1,5 +1,5 @@
 var responseBuild = function(result, callback){
-	var results;
+	var results = [];
 	result.forEach(function(res){
 		console.log("Results : " + JSON.stringify(res));
 		//console.log("Title: " + res['title']);
