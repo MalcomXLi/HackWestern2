@@ -1,5 +1,4 @@
-# HackWestern2
-<h1>AnswerMeThis</h1>
+# AnswerMeThis
 
 <h2>Description</h2>
 <p>
