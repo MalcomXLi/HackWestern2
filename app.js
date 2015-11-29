@@ -57,11 +57,13 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         		resultString += stringFormat(res);
 		    	var media = res['image'];
 		    	if (media){
+		    		console.log('media');
 	        		twiml.message(function() {
 				        this.body(resultString);
 				        this.media(media);
 				    });
         		}else {
+        			console.log('nonmedia');
         			twiml.message(resultString);
         		}
 
