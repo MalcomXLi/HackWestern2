@@ -35,14 +35,12 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         else{
         	responseBuilder.responseBuild(result, function(res){
         		var resultString = "";
-        		var wait = true;
 				if (res['title']){
 					resultString += resultString + res['title'];
 				}
         		if (res['text']){
         			console.log("text " + res['text']);
 					resultString += resultString + "\nAnswer: " + res['text'] ;
-					wait = false;
 				}
 		    	var media = res['image'];
 		    	if (media){
@@ -55,9 +53,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         			console.log('nonmedia : '+resultString);
         			twiml.message(resultString);
         		}
-        		if (!wait){
-	        		response.send(twiml);  
-	        	}
+        		response.send(twiml);  
         	})   
         }
     });
