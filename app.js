@@ -39,6 +39,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 					resultString += resultString + res['title'];
 				}
         		if (res['text']){
+        			console.log(res['text']);
 					resultString += resultString + "\nAnswer: " + res['text'] ;
 				}
 		    	var media = res['image'];
