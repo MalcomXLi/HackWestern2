@@ -14,7 +14,7 @@ var responseBuild = function(result, callback){
 			if ((res['title'].toLowerCase()).indexOf('plot') !== -1){//pictures of plots
 				results['image'] = pods['image'];
 			}
-			else if (((res['title'].toLowerCase()).indexOf('image') !== -1) || ((res['title'].toLowerCase()).indexOf('color') !== -1)){//general pictures
+			else if (((res['title'].toLowerCase()).indexOf('image') !== -1) || ((res['title'].toLowerCase()).indexOf('swatch') !== -1)){//general pictures
 				if (!results['title']){
 					results['title'] = res['title'];
 				}
