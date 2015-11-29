@@ -54,7 +54,14 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         			console.log('nonmedia : '+resultString);
         			twiml.message(resultString);
         		}
-        		response.send(twiml);  
+        		if (twiml.message !== ""){
+        			twiml.message = "Query was not found...\nPlease try another one";
+	        		console.log('Nothing found');
+	        	}
+	        	else {
+	        		console.log('Sending now!');
+	        	}
+	        	response.send(twiml);  
         	})   
         }
     });
@@ -96,7 +103,7 @@ app.get('/wiki', function(request, response){
         "Access-Control-Allow-Origin": "*"
     });
 
-    var query = "One Piece"
+    var query = "One Piece";
 
     wiki.queryWiki(query, function(err, result){
         if (err){
