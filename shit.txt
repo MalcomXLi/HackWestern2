@@ -3,3 +3,26 @@ secret:oVwIJWnUjs9ju4ICYREZRNctNzrNEuAy
 
 env variable:
 windows: set PATH_NAME=$path
+
+
+
+## Inspiration
+This was inspired from an article we read about an article which talked about the impact mobile devices were making in third world countries, such as Africa. Mobile development in these countries are increasing by the second and we wanted to try taking part in that development.
+
+## What it does
+This app allows users to get answers to questions at almost any time, which is achieved through the Twilio and Wolfram API. A user can text the application a question such as; integrate x^2, 2+4, plot(logx), what time is it, etc. Users can also ask for some dictionary definitions such as economics, ball, and H2O for example. This is all done by making a request to Wolfram and parsing the data into a readable sms or mms message. 
+
+## How I built it
+This was built by running a server with node.js/express and having it listen for a POST request done by Twilio. The server will use the query given in the body of the text to make another request to Wolfram, it will then parse the data and send it back as a sms message. Depending on if there is an image it may send a mms message instead.
+
+## Challenges I ran into
+Twilio was a little difficult to get running, although the initial messaging was not too hard it was difficult to have a message sent back with authentication because it required many things to be setup. Parsing the data and displaying it in a proper format for the response also took some time because Wolfram can send back a lot of data that may not be relevant.
+
+## Accomplishments that I'm proud of
+I am pretty proud that we were able to get this application running because offline services is something that I've never worked with before and I always thought was pretty cool. In fact just getting Twilio to work with the server and being able to have it send pictures was pretty amazing. 
+
+## What I learned
+Wolfram actually knows everything. The wolfram request can be amazingly broad, initially we thought we would need to tap into multiple APIs to get a broader range of data, but after further investigation we realized that Wolfram actually covers a pretty large variety of topics.
+
+## What's next for AnswerMeThis
+Increase the amount of data that is being sent and further improve the response speed, as well as improving visualization of the data. Also tap into other APIs to give users a broader range of topics to choose from.
