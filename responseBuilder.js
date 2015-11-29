@@ -1,7 +1,5 @@
 var responseBuild = function(result, callback){
-	var title;
-	var text;
-	var image;
+	var results;
 	result.forEach(function(res){
 		console.log("Results : " + JSON.stringify(res));
 		//console.log("Title: " + res['title']);
@@ -13,7 +11,7 @@ var responseBuild = function(result, callback){
 			}
 		});
 	});
-	callback(result);
+	callback(results);
 }
 
 module.exports = {

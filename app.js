@@ -61,7 +61,7 @@ app.get('/wolfram', function(request, response){
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     });
-    	var query = "plot(log(x))";
+    	var query = "integral(log(x))";
 
 
     wolfram.queryWolfram(query, function(err, result){
