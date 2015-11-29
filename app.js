@@ -36,8 +36,8 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	var title;
         	var text;
         	var image;
-        	console.log(result);
-        	result.forEach(function(JSON.stringify(res)){
+        	console.log(JSON.stringify(result));
+        	result.forEach(function(res){
         		if (res['primary']){
 	        		console.log("Results : " + JSON.stringify(res));
 					console.log("Title: " + res['title']);
