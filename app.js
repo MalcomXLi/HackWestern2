@@ -4,7 +4,6 @@ var bodyParser = require("body-parser");
 var twilio = require("twilio");
 var wolfram = require('./wolfram.js');
 var responseBuilder = require('./responseBuilder.js');
-var imageGenerator = require('./imageGenerator.js');
 var fs = require('fs');
 var wiki = require('./wikipedia.js');
 
@@ -35,22 +34,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
-        	responseBuilder.responseBuild(result, function(res){
-        		if (res['image']){
-        			imageGenerator.download('http://www4b.wolframalpha.com/Calculate/MSP/MSP3731d0f05eg55hhg5670000416i62fdch17d60c?MSPStoreType=image/gif&s=5', 'img/image.jpg', function(){
-					   	try
-					    {
-					        console.log( fs.statSync('img/image.jpg').isFile());
-					        console.log( fs.statSync('img/image2.jpg').isFile());
-					    }
-					    catch (err)
-					    {
-					        console.log (false);
-					    }
-
-					    console.log('Done downloading..');
-					  });
-        		}
+        	responseBuilder.responseBuild(result, function(res){  		
         		var resultstring = stringFormat(res);
 		    	var media = res['image'];
 		    	if (media){
@@ -71,6 +55,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 
 var stringFormat = function(res){
 	var result = "";
+	var
 	for (var key in res){
 		if (res.hasOwnProperty(key)) {
        		var obj = res[key];
@@ -79,6 +64,9 @@ var stringFormat = function(res){
 	        }
 	    }
 	}
+	setTimeout(function(){
+		return result;
+	},500)
 }
 
 //app.listen(process.env.PORT || 3000);
