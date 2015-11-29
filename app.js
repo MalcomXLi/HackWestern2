@@ -55,7 +55,6 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 
 var stringFormat = function(res){
 	var result = "";
-	var
 	for (var key in res){
 		if (res.hasOwnProperty(key)) {
        		var obj = res[key];
