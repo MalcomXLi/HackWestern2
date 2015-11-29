@@ -41,6 +41,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 					   	try
 					    {
 					        console.log( fs.statSync('img/image.jpg').isFile());
+					        console.log( fs.statSync('img/image2.jpg').isFile());
 					    }
 					    catch (err)
 					    {
