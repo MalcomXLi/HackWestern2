@@ -5,6 +5,7 @@ var twilio = require("twilio");
 var wolfram = require('./wolfram.js');
 var responseBuilder = require('./responseBuilder.js');
 var fs = require('fs');
+var wiki = require('./wikipedia.js');
 
 
 // Create an express web app
@@ -60,15 +61,6 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 
 });
 
-var stringFormat = function(res){
-	var resultString = "";
-	if (res['text']){
-		resultString += resultString + "\nAnswer: " + res['text'] ;
-	}
-	return resultString;
-}
-
-//app.listen(process.env.PORT || 3000);
 
 var server = app.listen(process.env.PORT || 6000, function () {
     var host = server.address().address;
@@ -88,6 +80,25 @@ app.get('/wolfram', function(request, response){
 
 
     wolfram.queryWolfram(query, function(err, result){
+        if (err){
+            response.status(404).send(err);
+        }
+        else{
+            response.status(200).send(result);      
+        }
+    });
+});
+
+app.get('/wiki', function(request, response){
+    console.log(request);
+    response.set({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    });
+
+    var query = "Big Bang"
+
+    wiki.queryWiki(query, function(err, result){
         if (err){
             response.status(404).send(err);
         }
