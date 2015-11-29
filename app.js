@@ -40,7 +40,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         			imageGenerator.download('http://www4b.wolframalpha.com/Calculate/MSP/MSP3731d0f05eg55hhg5670000416i62fdch17d60c?MSPStoreType=image/gif&s=5', 'img/image.jpg', function(){
 					   	try
 					    {
-					        console.log( fs.statSync(img/image.jpg).isFile());
+					        console.log( fs.statSync('img/image.jpg').isFile());
 					    }
 					    catch (err)
 					    {
