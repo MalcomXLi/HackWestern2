@@ -54,6 +54,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    	"\nAnswer: " + res['text'] ;
 		    	var media = res['image'];
         		twiml.message(function() {
+        			console.log("fuck");
 			        this.body(resultstring);
 			        this.media(media);
 			    });
