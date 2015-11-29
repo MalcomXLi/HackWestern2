@@ -33,7 +33,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
-        	responseBuilder(result, function(err, res){
+        	responseBuilder.responseBuild(result, function(err, res){
         		twiml.message(title +
 		    	"\nAnswer: " + text +
 		    	"\nImage: " 
