@@ -13,7 +13,7 @@ var responseBuild = function(result, callback){
 			}
 		});
 	});
-	callback(err, result);
+	callback(result);
 }
 
 module.exports = {
