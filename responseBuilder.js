@@ -28,8 +28,9 @@ var responseBuild = function(result, callback){
 					results['text'] = res['text'];
 				}
 			}
-	});
-	callback(results);
+		});
+		callback(results);
+	}
 }
 
 module.exports = {
