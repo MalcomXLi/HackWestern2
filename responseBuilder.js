@@ -9,6 +9,9 @@ var responseBuild = function(result, callback){
 			 	results['title'] = res['title'];
 				results['text']  = pods['text'];
 			}
+			if ((res['title'].toLowerCase()).indexOf('plot') !== -1){
+				results['image'] = pods['image'];
+			}
 		});
 	});
 	callback(results);

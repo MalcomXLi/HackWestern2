@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var twilio = require("twilio");
 var wolfram = require('./wolfram.js');
 var responseBuilder = require('./responseBuilder.js');
+var imageGenerator = require('./imageGenerator.js');
 
 
 // Create an express web app
@@ -36,7 +37,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         	responseBuilder.responseBuild(result, function(res){
         		twiml.message(res['title'] +
 		    	"\nAnswer: " + res['text'] +
-		    	"\nImage: " 
+		    	"\nImage: " + res['image']
 		    	);
 		    response.send(twiml);  
         	})   
