@@ -54,15 +54,15 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 				if (res['title']){
 					resultString += resultString + res['title'];
 				}
-        		resultstring += stringFormat(res);
+        		resultString += stringFormat(res);
 		    	var media = res['image'];
 		    	if (media){
 	        		twiml.message(function() {
-				        this.body(resultstring);
+				        this.body(resultString);
 				        this.media(media);
 				    });
         		}else {
-        			twiml.message(resultstring);
+        			twiml.message(resultString);
         		}
 
 		    response.send(twiml);  
