@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var twilio = require("twilio");
 var wolfram = require('./wolfram.js');
 var responseBuilder = require('./responseBuilder.js');
-var imageGenerator = require('./imageGenerator.js');
+//var imageGenerator = require('./imageGenerator.js');
 
 
 // Create an express web app
