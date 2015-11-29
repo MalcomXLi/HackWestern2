@@ -50,7 +50,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 					    console.log('Done downloading..');
 					  });
         		}
-        		var resultstring = "";
+        		var resultString = "";
 				if (res['title']){
 					resultString += resultString + res['title'];
 				}
