@@ -34,8 +34,8 @@ app.post('/sms', twilio.webhook(), function(request, response) {
         }
         else{
         	responseBuilder.responseBuild(result, function(res){
-        		twiml.message(title +
-		    	"\nAnswer: " + text +
+        		twiml.message(res['title'] +
+		    	"\nAnswer: " + res['text'] +
 		    	"\nImage: " 
 		    	);
 		    response.send(twiml);  
