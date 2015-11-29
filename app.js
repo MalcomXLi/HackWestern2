@@ -50,14 +50,16 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 					    console.log('Done downloading..');
 					  });
         		}
-        		var resultstring = res['title'] +
-		    	"\nAnswer: " + res['text'] ;
+        		var resultstring = stringFormat(res);
 		    	var media = res['image'];
-				console.log("fuck");
-        		twiml.message(function() {
-			        this.body(resultstring);
-			        this.media(media);
-			    });
+		    	if (media){
+	        		twiml.message(function() {
+				        this.body(resultstring);
+				        this.media(media);
+				    });
+        		}else {
+        			twiml.message(resultstring);
+        		}
 
 		    response.send(twiml);  
         	})   
@@ -65,6 +67,18 @@ app.post('/sms', twilio.webhook(), function(request, response) {
     });
 
 });
+
+var stringFormat = function(res){
+	var result = "";
+	for (var key in res){
+		if (res.hasOwnProperty(key)) {
+       		var obj = res[key];
+	        if(obj && (key !== 'image')){
+	        	result+=result + key + " " + obj;
+	        }
+	    }
+	}
+}
 
 //app.listen(process.env.PORT || 3000);
 
