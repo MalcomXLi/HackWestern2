@@ -14,13 +14,13 @@ var responseBuild = function(result, callback){
 			if ((res['title'].toLowerCase()).indexOf('plot') !== -1){//pictures of plots
 				results['image'] = pods['image'];
 			}
-			else if ((res['title'].toLowerCase()).indexOf('image') !== -1){//general pictures
+			else if (((res['title'].toLowerCase()).indexOf('image') !== -1) || ((res['title'].toLowerCase()).indexOf('color') !== -1)){//general pictures
 				if (!results['title']){
 					results['title'] = res['title'];
 				}
 				results['image'] = pods['image'];
 			}
-			if ((res['title'].toLowerCase()).indexOf('material properties') !== -1){
+			if ((res['title'].toLowerCase()).indexOf('material') !== -1){
 				if (!results['title']){
 					results['title'] = res['title'];
 				}
