@@ -3,8 +3,8 @@ var app = express ();
 var bodyParser = require("body-parser");
 var twilio = require("twilio");
 var wolfram = require('./wolfram.js');
+var responseBuilder = require('./responseBuilder.js');
 
-app.set('port', (process.env.PORT || 3000));
 
 // Create an express web app
 var app = express();
@@ -33,26 +33,13 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 		    response.send(twiml);    
         }
         else{
-        	var title;
-        	var text;
-        	var image;
-        	result.forEach(function(res){
-	        		console.log("Results : " + JSON.stringify(res));
-					//console.log("Title: " + res['title']);
-	        		res['subpods'].forEach(function(pods){
-	        			//console.log("text: " + pods['text']);
-	        			if (res['primary']){
-						 	title = res['title'];
-							text = pods['text'];
-	        			}
-	        		});
-        	});
-        
-		    twiml.message(title +
+        	responseBuilder(result, function(err, res){
+        		twiml.message(title +
 		    	"\nAnswer: " + text +
 		    	"\nImage: " 
 		    	);
-		    response.send(twiml);     
+		    response.send(twiml);  
+        	})   
         }
     });
 
@@ -60,7 +47,7 @@ app.post('/sms', twilio.webhook(), function(request, response) {
 
 //app.listen(process.env.PORT || 3000);
 
-var server = app.listen(process.env.PORT || 3000, function () {
+var server = app.listen(process.env.PORT || 6000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
