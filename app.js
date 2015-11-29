@@ -96,7 +96,7 @@ app.get('/wiki', function(request, response){
         "Access-Control-Allow-Origin": "*"
     });
 
-    var query = "Big Bang"
+    var query = "One Piece"
 
     wiki.queryWiki(query, function(err, result){
         if (err){
